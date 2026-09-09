@@ -149,7 +149,7 @@ function SupplierProfilePage() {
                         <span className="font-semibold">{a.name}</span>
                         <span className="ml-2 text-xs text-muted-foreground">{a.date}</span>
                       </span>
-                      <StatusPill tone={a.status === "Completed" ? "success" : "info"}>
+                      <StatusPill tone={a.status === "Completed" ? "success" : "warn"}>
                         {a.status}
                       </StatusPill>
                     </li>
