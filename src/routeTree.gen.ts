@@ -10,22 +10,37 @@
 
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as IndexRouteImport } from './routes/index'
+import { Route as SplatRouteImport } from './routes/$'
 import { Route as CartRouteImport } from './routes/cart'
 import { Route as CheckoutRouteImport } from './routes/checkout'
 import { Route as LoginRouteImport } from './routes/login'
 import { Route as SearchRouteImport } from './routes/search'
 import { Route as SignupRouteImport } from './routes/signup'
+import { Route as AdminIndexRouteImport } from './routes/admin.index'
+import { Route as AdminOrdersRouteImport } from './routes/admin.orders'
+import { Route as AdminVerificationRouteImport } from './routes/admin.verification'
 import { Route as CategorySlugRouteImport } from './routes/category.$slug'
+import { Route as DashboardIndexRouteImport } from './routes/dashboard.index'
+import { Route as DashboardOrdersRouteImport } from './routes/dashboard.orders'
+import { Route as DashboardRentalsRouteImport } from './routes/dashboard.rentals'
+import { Route as DashboardWalletRouteImport } from './routes/dashboard.wallet'
 import { Route as EquipmentIndexRouteImport } from './routes/equipment.index'
 import { Route as EquipmentIdRouteImport } from './routes/equipment.$id'
 import { Route as ProductIdRouteImport } from './routes/product.$id'
 import { Route as ProfessionalsIndexRouteImport } from './routes/professionals.index'
 import { Route as ProfessionalsIdRouteImport } from './routes/professionals.$id'
 import { Route as SellOnboardingRouteImport } from './routes/sell.onboarding'
+import { Route as DashboardProductsIndexRouteImport } from './routes/dashboard.products.index'
+import { Route as DashboardProductsNewRouteImport } from './routes/dashboard.products.new'
 
 const IndexRoute = IndexRouteImport.update({
   id: '/',
   path: '/',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const SplatRoute = SplatRouteImport.update({
+  id: '/$',
+  path: '/$',
   getParentRoute: () => rootRouteImport,
 } as any)
 const CartRoute = CartRouteImport.update({
@@ -53,9 +68,44 @@ const SignupRoute = SignupRouteImport.update({
   path: '/signup',
   getParentRoute: () => rootRouteImport,
 } as any)
+const AdminIndexRoute = AdminIndexRouteImport.update({
+  id: '/admin/',
+  path: '/admin/',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const AdminOrdersRoute = AdminOrdersRouteImport.update({
+  id: '/admin/orders',
+  path: '/admin/orders',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const AdminVerificationRoute = AdminVerificationRouteImport.update({
+  id: '/admin/verification',
+  path: '/admin/verification',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const CategorySlugRoute = CategorySlugRouteImport.update({
   id: '/category/$slug',
   path: '/category/$slug',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const DashboardIndexRoute = DashboardIndexRouteImport.update({
+  id: '/dashboard/',
+  path: '/dashboard/',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const DashboardOrdersRoute = DashboardOrdersRouteImport.update({
+  id: '/dashboard/orders',
+  path: '/dashboard/orders',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const DashboardRentalsRoute = DashboardRentalsRouteImport.update({
+  id: '/dashboard/rentals',
+  path: '/dashboard/rentals',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const DashboardWalletRoute = DashboardWalletRouteImport.update({
+  id: '/dashboard/wallet',
+  path: '/dashboard/wallet',
   getParentRoute: () => rootRouteImport,
 } as any)
 const EquipmentIndexRoute = EquipmentIndexRouteImport.update({
@@ -88,115 +138,195 @@ const SellOnboardingRoute = SellOnboardingRouteImport.update({
   path: '/sell/onboarding',
   getParentRoute: () => rootRouteImport,
 } as any)
+const DashboardProductsIndexRoute = DashboardProductsIndexRouteImport.update({
+  id: '/dashboard/products/',
+  path: '/dashboard/products/',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const DashboardProductsNewRoute = DashboardProductsNewRouteImport.update({
+  id: '/dashboard/products/new',
+  path: '/dashboard/products/new',
+  getParentRoute: () => rootRouteImport,
+} as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
+  '/$': typeof SplatRoute
   '/cart': typeof CartRoute
   '/checkout': typeof CheckoutRoute
   '/login': typeof LoginRoute
   '/search': typeof SearchRoute
   '/signup': typeof SignupRoute
+  '/admin/orders': typeof AdminOrdersRoute
+  '/admin/verification': typeof AdminVerificationRoute
   '/category/$slug': typeof CategorySlugRoute
+  '/dashboard/orders': typeof DashboardOrdersRoute
+  '/dashboard/rentals': typeof DashboardRentalsRoute
+  '/dashboard/wallet': typeof DashboardWalletRoute
   '/equipment/$id': typeof EquipmentIdRoute
   '/product/$id': typeof ProductIdRoute
   '/professionals/$id': typeof ProfessionalsIdRoute
   '/sell/onboarding': typeof SellOnboardingRoute
+  '/admin/': typeof AdminIndexRoute
+  '/dashboard/': typeof DashboardIndexRoute
   '/equipment/': typeof EquipmentIndexRoute
   '/professionals/': typeof ProfessionalsIndexRoute
+  '/dashboard/products/new': typeof DashboardProductsNewRoute
+  '/dashboard/products/': typeof DashboardProductsIndexRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
+  '/$': typeof SplatRoute
   '/cart': typeof CartRoute
   '/checkout': typeof CheckoutRoute
   '/login': typeof LoginRoute
   '/search': typeof SearchRoute
   '/signup': typeof SignupRoute
+  '/admin/orders': typeof AdminOrdersRoute
+  '/admin/verification': typeof AdminVerificationRoute
   '/category/$slug': typeof CategorySlugRoute
+  '/dashboard/orders': typeof DashboardOrdersRoute
+  '/dashboard/rentals': typeof DashboardRentalsRoute
+  '/dashboard/wallet': typeof DashboardWalletRoute
   '/equipment/$id': typeof EquipmentIdRoute
   '/product/$id': typeof ProductIdRoute
   '/professionals/$id': typeof ProfessionalsIdRoute
   '/sell/onboarding': typeof SellOnboardingRoute
+  '/admin': typeof AdminIndexRoute
+  '/dashboard': typeof DashboardIndexRoute
   '/equipment': typeof EquipmentIndexRoute
   '/professionals': typeof ProfessionalsIndexRoute
+  '/dashboard/products/new': typeof DashboardProductsNewRoute
+  '/dashboard/products': typeof DashboardProductsIndexRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
+  '/$': typeof SplatRoute
   '/cart': typeof CartRoute
   '/checkout': typeof CheckoutRoute
   '/login': typeof LoginRoute
   '/search': typeof SearchRoute
   '/signup': typeof SignupRoute
+  '/admin/orders': typeof AdminOrdersRoute
+  '/admin/verification': typeof AdminVerificationRoute
   '/category/$slug': typeof CategorySlugRoute
+  '/dashboard/orders': typeof DashboardOrdersRoute
+  '/dashboard/rentals': typeof DashboardRentalsRoute
+  '/dashboard/wallet': typeof DashboardWalletRoute
   '/equipment/$id': typeof EquipmentIdRoute
   '/product/$id': typeof ProductIdRoute
   '/professionals/$id': typeof ProfessionalsIdRoute
   '/sell/onboarding': typeof SellOnboardingRoute
+  '/admin/': typeof AdminIndexRoute
+  '/dashboard/': typeof DashboardIndexRoute
   '/equipment/': typeof EquipmentIndexRoute
   '/professionals/': typeof ProfessionalsIndexRoute
+  '/dashboard/products/new': typeof DashboardProductsNewRoute
+  '/dashboard/products/': typeof DashboardProductsIndexRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
   fullPaths:
     | '/'
+    | '/$'
     | '/cart'
     | '/checkout'
     | '/login'
     | '/search'
     | '/signup'
+    | '/admin/orders'
+    | '/admin/verification'
     | '/category/$slug'
+    | '/dashboard/orders'
+    | '/dashboard/rentals'
+    | '/dashboard/wallet'
     | '/equipment/$id'
     | '/product/$id'
     | '/professionals/$id'
     | '/sell/onboarding'
+    | '/admin/'
+    | '/dashboard/'
     | '/equipment/'
     | '/professionals/'
+    | '/dashboard/products/new'
+    | '/dashboard/products/'
   fileRoutesByTo: FileRoutesByTo
   to:
     | '/'
+    | '/$'
     | '/cart'
     | '/checkout'
     | '/login'
     | '/search'
     | '/signup'
+    | '/admin/orders'
+    | '/admin/verification'
     | '/category/$slug'
+    | '/dashboard/orders'
+    | '/dashboard/rentals'
+    | '/dashboard/wallet'
     | '/equipment/$id'
     | '/product/$id'
     | '/professionals/$id'
     | '/sell/onboarding'
+    | '/admin'
+    | '/dashboard'
     | '/equipment'
     | '/professionals'
+    | '/dashboard/products/new'
+    | '/dashboard/products'
   id:
     | '__root__'
     | '/'
+    | '/$'
     | '/cart'
     | '/checkout'
     | '/login'
     | '/search'
     | '/signup'
+    | '/admin/orders'
+    | '/admin/verification'
     | '/category/$slug'
+    | '/dashboard/orders'
+    | '/dashboard/rentals'
+    | '/dashboard/wallet'
     | '/equipment/$id'
     | '/product/$id'
     | '/professionals/$id'
     | '/sell/onboarding'
+    | '/admin/'
+    | '/dashboard/'
     | '/equipment/'
     | '/professionals/'
+    | '/dashboard/products/new'
+    | '/dashboard/products/'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
+  SplatRoute: typeof SplatRoute
   CartRoute: typeof CartRoute
   CheckoutRoute: typeof CheckoutRoute
   LoginRoute: typeof LoginRoute
   SearchRoute: typeof SearchRoute
   SignupRoute: typeof SignupRoute
+  AdminOrdersRoute: typeof AdminOrdersRoute
+  AdminVerificationRoute: typeof AdminVerificationRoute
   CategorySlugRoute: typeof CategorySlugRoute
+  DashboardOrdersRoute: typeof DashboardOrdersRoute
+  DashboardRentalsRoute: typeof DashboardRentalsRoute
+  DashboardWalletRoute: typeof DashboardWalletRoute
   EquipmentIdRoute: typeof EquipmentIdRoute
   ProductIdRoute: typeof ProductIdRoute
   ProfessionalsIdRoute: typeof ProfessionalsIdRoute
   SellOnboardingRoute: typeof SellOnboardingRoute
+  AdminIndexRoute: typeof AdminIndexRoute
+  DashboardIndexRoute: typeof DashboardIndexRoute
   EquipmentIndexRoute: typeof EquipmentIndexRoute
   ProfessionalsIndexRoute: typeof ProfessionalsIndexRoute
+  DashboardProductsNewRoute: typeof DashboardProductsNewRoute
+  DashboardProductsIndexRoute: typeof DashboardProductsIndexRoute
 }
 
 declare module '@tanstack/react-router' {
@@ -206,6 +336,13 @@ declare module '@tanstack/react-router' {
       path: '/'
       fullPath: '/'
       preLoaderRoute: typeof IndexRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/$': {
+      id: '/$'
+      path: '/$'
+      fullPath: '/$'
+      preLoaderRoute: typeof SplatRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/cart': {
@@ -243,11 +380,60 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof SignupRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/admin/': {
+      id: '/admin/'
+      path: '/admin'
+      fullPath: '/admin/'
+      preLoaderRoute: typeof AdminIndexRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/admin/orders': {
+      id: '/admin/orders'
+      path: '/admin/orders'
+      fullPath: '/admin/orders'
+      preLoaderRoute: typeof AdminOrdersRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/admin/verification': {
+      id: '/admin/verification'
+      path: '/admin/verification'
+      fullPath: '/admin/verification'
+      preLoaderRoute: typeof AdminVerificationRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/category/$slug': {
       id: '/category/$slug'
       path: '/category/$slug'
       fullPath: '/category/$slug'
       preLoaderRoute: typeof CategorySlugRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/dashboard/': {
+      id: '/dashboard/'
+      path: '/dashboard'
+      fullPath: '/dashboard/'
+      preLoaderRoute: typeof DashboardIndexRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/dashboard/orders': {
+      id: '/dashboard/orders'
+      path: '/dashboard/orders'
+      fullPath: '/dashboard/orders'
+      preLoaderRoute: typeof DashboardOrdersRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/dashboard/rentals': {
+      id: '/dashboard/rentals'
+      path: '/dashboard/rentals'
+      fullPath: '/dashboard/rentals'
+      preLoaderRoute: typeof DashboardRentalsRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/dashboard/wallet': {
+      id: '/dashboard/wallet'
+      path: '/dashboard/wallet'
+      fullPath: '/dashboard/wallet'
+      preLoaderRoute: typeof DashboardWalletRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/equipment/': {
@@ -292,23 +478,47 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof SellOnboardingRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/dashboard/products/': {
+      id: '/dashboard/products/'
+      path: '/dashboard/products'
+      fullPath: '/dashboard/products/'
+      preLoaderRoute: typeof DashboardProductsIndexRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/dashboard/products/new': {
+      id: '/dashboard/products/new'
+      path: '/dashboard/products/new'
+      fullPath: '/dashboard/products/new'
+      preLoaderRoute: typeof DashboardProductsNewRouteImport
+      parentRoute: typeof rootRouteImport
+    }
   }
 }
 
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
+  SplatRoute: SplatRoute,
   CartRoute: CartRoute,
   CheckoutRoute: CheckoutRoute,
   LoginRoute: LoginRoute,
   SearchRoute: SearchRoute,
   SignupRoute: SignupRoute,
+  AdminOrdersRoute: AdminOrdersRoute,
+  AdminVerificationRoute: AdminVerificationRoute,
   CategorySlugRoute: CategorySlugRoute,
+  DashboardOrdersRoute: DashboardOrdersRoute,
+  DashboardRentalsRoute: DashboardRentalsRoute,
+  DashboardWalletRoute: DashboardWalletRoute,
   EquipmentIdRoute: EquipmentIdRoute,
   ProductIdRoute: ProductIdRoute,
   ProfessionalsIdRoute: ProfessionalsIdRoute,
   SellOnboardingRoute: SellOnboardingRoute,
+  AdminIndexRoute: AdminIndexRoute,
+  DashboardIndexRoute: DashboardIndexRoute,
   EquipmentIndexRoute: EquipmentIndexRoute,
   ProfessionalsIndexRoute: ProfessionalsIndexRoute,
+  DashboardProductsNewRoute: DashboardProductsNewRoute,
+  DashboardProductsIndexRoute: DashboardProductsIndexRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
