@@ -10,12 +10,37 @@
 
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as IndexRouteImport } from './routes/index'
+import { Route as CartRouteImport } from './routes/cart'
+import { Route as CheckoutRouteImport } from './routes/checkout'
+import { Route as LoginRouteImport } from './routes/login'
 import { Route as SearchRouteImport } from './routes/search'
+import { Route as SignupRouteImport } from './routes/signup'
 import { Route as CategorySlugRouteImport } from './routes/category.$slug'
+import { Route as EquipmentIndexRouteImport } from './routes/equipment.index'
+import { Route as EquipmentIdRouteImport } from './routes/equipment.$id'
+import { Route as ProductIdRouteImport } from './routes/product.$id'
+import { Route as ProfessionalsIndexRouteImport } from './routes/professionals.index'
+import { Route as ProfessionalsIdRouteImport } from './routes/professionals.$id'
+import { Route as SellOnboardingRouteImport } from './routes/sell.onboarding'
 
 const IndexRoute = IndexRouteImport.update({
   id: '/',
   path: '/',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const CartRoute = CartRouteImport.update({
+  id: '/cart',
+  path: '/cart',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const CheckoutRoute = CheckoutRouteImport.update({
+  id: '/checkout',
+  path: '/checkout',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const LoginRoute = LoginRouteImport.update({
+  id: '/login',
+  path: '/login',
   getParentRoute: () => rootRouteImport,
 } as any)
 const SearchRoute = SearchRouteImport.update({
@@ -23,40 +48,155 @@ const SearchRoute = SearchRouteImport.update({
   path: '/search',
   getParentRoute: () => rootRouteImport,
 } as any)
+const SignupRoute = SignupRouteImport.update({
+  id: '/signup',
+  path: '/signup',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const CategorySlugRoute = CategorySlugRouteImport.update({
   id: '/category/$slug',
   path: '/category/$slug',
   getParentRoute: () => rootRouteImport,
 } as any)
+const EquipmentIndexRoute = EquipmentIndexRouteImport.update({
+  id: '/equipment/',
+  path: '/equipment/',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const EquipmentIdRoute = EquipmentIdRouteImport.update({
+  id: '/equipment/$id',
+  path: '/equipment/$id',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ProductIdRoute = ProductIdRouteImport.update({
+  id: '/product/$id',
+  path: '/product/$id',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ProfessionalsIndexRoute = ProfessionalsIndexRouteImport.update({
+  id: '/professionals/',
+  path: '/professionals/',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ProfessionalsIdRoute = ProfessionalsIdRouteImport.update({
+  id: '/professionals/$id',
+  path: '/professionals/$id',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const SellOnboardingRoute = SellOnboardingRouteImport.update({
+  id: '/sell/onboarding',
+  path: '/sell/onboarding',
+  getParentRoute: () => rootRouteImport,
+} as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
+  '/cart': typeof CartRoute
+  '/checkout': typeof CheckoutRoute
+  '/login': typeof LoginRoute
   '/search': typeof SearchRoute
+  '/signup': typeof SignupRoute
   '/category/$slug': typeof CategorySlugRoute
+  '/equipment/$id': typeof EquipmentIdRoute
+  '/product/$id': typeof ProductIdRoute
+  '/professionals/$id': typeof ProfessionalsIdRoute
+  '/sell/onboarding': typeof SellOnboardingRoute
+  '/equipment/': typeof EquipmentIndexRoute
+  '/professionals/': typeof ProfessionalsIndexRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
+  '/cart': typeof CartRoute
+  '/checkout': typeof CheckoutRoute
+  '/login': typeof LoginRoute
   '/search': typeof SearchRoute
+  '/signup': typeof SignupRoute
   '/category/$slug': typeof CategorySlugRoute
+  '/equipment/$id': typeof EquipmentIdRoute
+  '/product/$id': typeof ProductIdRoute
+  '/professionals/$id': typeof ProfessionalsIdRoute
+  '/sell/onboarding': typeof SellOnboardingRoute
+  '/equipment': typeof EquipmentIndexRoute
+  '/professionals': typeof ProfessionalsIndexRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
+  '/cart': typeof CartRoute
+  '/checkout': typeof CheckoutRoute
+  '/login': typeof LoginRoute
   '/search': typeof SearchRoute
+  '/signup': typeof SignupRoute
   '/category/$slug': typeof CategorySlugRoute
+  '/equipment/$id': typeof EquipmentIdRoute
+  '/product/$id': typeof ProductIdRoute
+  '/professionals/$id': typeof ProfessionalsIdRoute
+  '/sell/onboarding': typeof SellOnboardingRoute
+  '/equipment/': typeof EquipmentIndexRoute
+  '/professionals/': typeof ProfessionalsIndexRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/' | '/search' | '/category/$slug'
+  fullPaths:
+    | '/'
+    | '/cart'
+    | '/checkout'
+    | '/login'
+    | '/search'
+    | '/signup'
+    | '/category/$slug'
+    | '/equipment/$id'
+    | '/product/$id'
+    | '/professionals/$id'
+    | '/sell/onboarding'
+    | '/equipment/'
+    | '/professionals/'
   fileRoutesByTo: FileRoutesByTo
-  to: '/' | '/search' | '/category/$slug'
-  id: '__root__' | '/' | '/search' | '/category/$slug'
+  to:
+    | '/'
+    | '/cart'
+    | '/checkout'
+    | '/login'
+    | '/search'
+    | '/signup'
+    | '/category/$slug'
+    | '/equipment/$id'
+    | '/product/$id'
+    | '/professionals/$id'
+    | '/sell/onboarding'
+    | '/equipment'
+    | '/professionals'
+  id:
+    | '__root__'
+    | '/'
+    | '/cart'
+    | '/checkout'
+    | '/login'
+    | '/search'
+    | '/signup'
+    | '/category/$slug'
+    | '/equipment/$id'
+    | '/product/$id'
+    | '/professionals/$id'
+    | '/sell/onboarding'
+    | '/equipment/'
+    | '/professionals/'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
+  CartRoute: typeof CartRoute
+  CheckoutRoute: typeof CheckoutRoute
+  LoginRoute: typeof LoginRoute
   SearchRoute: typeof SearchRoute
+  SignupRoute: typeof SignupRoute
   CategorySlugRoute: typeof CategorySlugRoute
+  EquipmentIdRoute: typeof EquipmentIdRoute
+  ProductIdRoute: typeof ProductIdRoute
+  ProfessionalsIdRoute: typeof ProfessionalsIdRoute
+  SellOnboardingRoute: typeof SellOnboardingRoute
+  EquipmentIndexRoute: typeof EquipmentIndexRoute
+  ProfessionalsIndexRoute: typeof ProfessionalsIndexRoute
 }
 
 declare module '@tanstack/react-router' {
@@ -68,11 +208,39 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof IndexRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/cart': {
+      id: '/cart'
+      path: '/cart'
+      fullPath: '/cart'
+      preLoaderRoute: typeof CartRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/checkout': {
+      id: '/checkout'
+      path: '/checkout'
+      fullPath: '/checkout'
+      preLoaderRoute: typeof CheckoutRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/login': {
+      id: '/login'
+      path: '/login'
+      fullPath: '/login'
+      preLoaderRoute: typeof LoginRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/search': {
       id: '/search'
       path: '/search'
       fullPath: '/search'
       preLoaderRoute: typeof SearchRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/signup': {
+      id: '/signup'
+      path: '/signup'
+      fullPath: '/signup'
+      preLoaderRoute: typeof SignupRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/category/$slug': {
@@ -82,13 +250,65 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof CategorySlugRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/equipment/': {
+      id: '/equipment/'
+      path: '/equipment'
+      fullPath: '/equipment/'
+      preLoaderRoute: typeof EquipmentIndexRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/equipment/$id': {
+      id: '/equipment/$id'
+      path: '/equipment/$id'
+      fullPath: '/equipment/$id'
+      preLoaderRoute: typeof EquipmentIdRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/product/$id': {
+      id: '/product/$id'
+      path: '/product/$id'
+      fullPath: '/product/$id'
+      preLoaderRoute: typeof ProductIdRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/professionals/': {
+      id: '/professionals/'
+      path: '/professionals'
+      fullPath: '/professionals/'
+      preLoaderRoute: typeof ProfessionalsIndexRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/professionals/$id': {
+      id: '/professionals/$id'
+      path: '/professionals/$id'
+      fullPath: '/professionals/$id'
+      preLoaderRoute: typeof ProfessionalsIdRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/sell/onboarding': {
+      id: '/sell/onboarding'
+      path: '/sell/onboarding'
+      fullPath: '/sell/onboarding'
+      preLoaderRoute: typeof SellOnboardingRouteImport
+      parentRoute: typeof rootRouteImport
+    }
   }
 }
 
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
+  CartRoute: CartRoute,
+  CheckoutRoute: CheckoutRoute,
+  LoginRoute: LoginRoute,
   SearchRoute: SearchRoute,
+  SignupRoute: SignupRoute,
   CategorySlugRoute: CategorySlugRoute,
+  EquipmentIdRoute: EquipmentIdRoute,
+  ProductIdRoute: ProductIdRoute,
+  ProfessionalsIdRoute: ProfessionalsIdRoute,
+  SellOnboardingRoute: SellOnboardingRoute,
+  EquipmentIndexRoute: EquipmentIndexRoute,
+  ProfessionalsIndexRoute: ProfessionalsIndexRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)

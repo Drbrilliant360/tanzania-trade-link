@@ -10,8 +10,9 @@ import { toast } from "sonner";
 
 export const Route = createFileRoute("/search")({
   validateSearch: (search: Record<string, unknown>) => ({
-    q: typeof search.q === "string" ? search.q : "",
+    q: typeof search["q"] === "string" ? (search["q"] as string) : "",
   }),
+
   head: () => ({
     meta: [
       { title: "Search building materials — JengaHub" },
@@ -97,6 +98,7 @@ function SearchResultsPage() {
                 <button
                   onClick={() => {
                     const cement = PRODUCTS[0];
+                    if (!cement) return;
                     add(
                       {
                         id: cement.id,
@@ -111,6 +113,7 @@ function SearchResultsPage() {
                     );
                     toast.success("Estimate added to cart (90 bags of cement)");
                   }}
+
                   className="h-10 rounded-md bg-primary px-5 text-sm font-semibold text-primary-foreground transition hover:brightness-110"
                 >
                   Add estimate to cart
