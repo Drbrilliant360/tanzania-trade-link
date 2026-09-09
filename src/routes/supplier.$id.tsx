@@ -177,6 +177,7 @@ function SupplierProfilePage() {
             </ul>
             <Link
               to="/search"
+              search={{ q: supplier.name }}
               className="mt-5 flex h-11 items-center justify-center rounded-md bg-primary text-sm font-semibold text-primary-foreground transition hover:brightness-110"
             >
               Browse their materials
