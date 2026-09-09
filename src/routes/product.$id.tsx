@@ -163,7 +163,14 @@ function ProductDetailPage() {
                 {product.location}
               </p>
               <p className="flex items-center gap-2">
-                <MapPin className="h-4 w-4 text-primary" /> Sold by {product.seller}
+                <MapPin className="h-4 w-4 text-primary" /> Sold by{" "}
+                <Link
+                  to="/supplier/$id"
+                  params={{ id: product.sellerId }}
+                  className="font-semibold text-primary hover:underline"
+                >
+                  {product.seller}
+                </Link>
               </p>
             </div>
           </div>
