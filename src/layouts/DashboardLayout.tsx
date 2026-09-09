@@ -36,6 +36,9 @@ export function DashboardLayout({
   actions?: ReactNode;
   children: ReactNode;
 }) {
+  const navLink =
+    "flex items-center gap-3 rounded-md px-3 py-2 text-sm font-medium text-muted-foreground hover:bg-muted";
+
   return (
     <div className="flex min-h-screen bg-background">
       <aside className="hidden w-64 shrink-0 flex-col border-r border-border bg-surface lg:flex">
@@ -54,7 +57,7 @@ export function DashboardLayout({
               to={item.to}
               activeOptions={{ exact: item.to === "/dashboard" }}
               activeProps={{ className: "bg-accent text-accent-foreground" }}
-              className="flex items-center gap-3 rounded-md px-3 py-2 text-sm font-medium text-muted-foreground hover:bg-muted"
+              className={navLink}
             >
               <item.icon className="h-4 w-4" />
               {item.label}
@@ -68,7 +71,7 @@ export function DashboardLayout({
               to={item.to}
               activeOptions={{ exact: item.to === "/admin" }}
               activeProps={{ className: "bg-accent text-accent-foreground" }}
-              className="flex items-center gap-3 rounded-md px-3 py-2 text-sm font-medium text-muted-foreground hover:bg-muted"
+              className={navLink}
             >
               <item.icon className="h-4 w-4" />
               {item.label}
@@ -78,16 +81,39 @@ export function DashboardLayout({
       </aside>
 
       <div className="flex min-w-0 flex-1 flex-col">
-        <div className="border-b border-border bg-surface px-4 py-6 lg:px-10">
+        <div className="flex h-14 items-center gap-2 border-b border-border bg-surface px-4 lg:hidden">
+          <Link to="/" className="flex items-center gap-2">
+            <span className="flex h-8 w-8 items-center justify-center rounded-full bg-primary text-primary-foreground">
+              <HardHat className="h-4 w-4" />
+            </span>
+            <span className="font-display text-base font-bold text-ink">JengaHub</span>
+          </Link>
+        </div>
+        <div className="-mx-px flex gap-2 overflow-x-auto border-b border-border bg-surface px-4 py-2 lg:hidden">
+          {[...SELLER_NAV, ...ADMIN_NAV].map((item) => (
+            <Link
+              key={item.to}
+              to={item.to}
+              activeOptions={{ exact: item.to === "/dashboard" || item.to === "/admin" }}
+              activeProps={{ className: "bg-accent text-accent-foreground" }}
+              className="flex shrink-0 items-center gap-2 rounded-md px-3 py-2 text-xs font-semibold text-muted-foreground hover:bg-muted"
+            >
+              <item.icon className="h-4 w-4 shrink-0" />
+              {item.label}
+            </Link>
+          ))}
+        </div>
+
+        <div className="border-b border-border bg-surface px-4 py-5 lg:px-10 lg:py-6">
           <div className="flex flex-wrap items-end justify-between gap-4">
-            <div>
-              <h1 className="text-3xl">{title}</h1>
+            <div className="min-w-0">
+              <h1 className="text-2xl sm:text-3xl">{title}</h1>
               {subtitle && <p className="mt-1 text-sm text-muted-foreground">{subtitle}</p>}
             </div>
-            {actions && <div className="flex gap-3">{actions}</div>}
+            {actions && <div className="flex flex-wrap gap-3">{actions}</div>}
           </div>
         </div>
-        <div className="flex-1 p-4 lg:p-10">{children}</div>
+        <div className="min-w-0 flex-1 p-4 lg:p-10">{children}</div>
       </div>
     </div>
   );
