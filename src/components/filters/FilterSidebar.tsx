@@ -1,4 +1,5 @@
-import { SlidersHorizontal } from "lucide-react";
+import { useState } from "react";
+import { ChevronDown, SlidersHorizontal } from "lucide-react";
 import { CATEGORIES, REGIONS, SELLER_TYPES } from "@/lib/constants";
 import { formatNumber } from "@/lib/format";
 
