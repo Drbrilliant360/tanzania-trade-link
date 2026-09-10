@@ -61,13 +61,13 @@ function CategoryListingPage() {
           <span className="text-foreground">{name}</span>
         </nav>
 
-        <div className="mt-8 grid gap-10 lg:grid-cols-[16rem_1fr]">
+        <div className="mt-6 grid gap-6 lg:mt-8 lg:grid-cols-[16rem_1fr] lg:gap-10">
           <FilterSidebar filters={filters} onChange={setFilters} />
 
           <div>
             <div className="flex flex-wrap items-end justify-between gap-4">
-              <div>
-                <h1 className="text-4xl">{name}</h1>
+              <div className="min-w-0">
+                <h1 className="text-2xl sm:text-3xl lg:text-4xl">{name}</h1>
                 <p className="mt-2 text-sm text-muted-foreground">
                   Showing <span className="font-semibold text-foreground">{results.length}</span>{" "}
                   quality products from verified Tanzanian suppliers
@@ -108,7 +108,7 @@ function CategoryListingPage() {
               </div>
             )}
 
-            <div className="mt-12 flex items-center justify-center gap-2">
+            <div className="mt-12 flex flex-wrap items-center justify-center gap-2">
               {["Previous", "1", "2", "3", "…", "12", "Next"].map((page) => (
                 <button
                   key={page}

@@ -1,4 +1,5 @@
-import { SlidersHorizontal } from "lucide-react";
+import { useState } from "react";
+import { ChevronDown, SlidersHorizontal } from "lucide-react";
 import { CATEGORIES, REGIONS, SELLER_TYPES } from "@/lib/constants";
 import { formatNumber } from "@/lib/format";
 
@@ -51,19 +52,41 @@ export function FilterSidebar({
   filters: Filters;
   onChange: (next: Filters) => void;
 }) {
+  const [open, setOpen] = useState(false);
+  const activeCount =
+    filters.categories.length + filters.regions.length + filters.sellerTypes.length;
+
   return (
-    <aside className="w-full shrink-0 lg:w-64">
-      <div className="flex items-center justify-between pb-4">
-        <span className="eyebrow flex items-center gap-2">
-          <SlidersHorizontal className="h-3.5 w-3.5" /> Filters
-        </span>
+    <aside className="w-full shrink-0 rounded-xl border border-border p-4 lg:w-64 lg:rounded-none lg:border-0 lg:p-0">
+      <div className="grid grid-cols-[minmax(0,1fr)_auto] items-center gap-3 lg:flex lg:justify-between lg:pb-4">
         <button
-          className="text-xs font-semibold text-primary"
+          type="button"
+          onClick={() => setOpen((v) => !v)}
+          aria-expanded={open}
+          className="flex min-w-0 items-center gap-2 text-left lg:pointer-events-none"
+        >
+          <span className="eyebrow flex items-center gap-2">
+            <SlidersHorizontal className="h-3.5 w-3.5 shrink-0" /> Filters
+            {activeCount > 0 && (
+              <span className="rounded-full bg-primary px-2 py-0.5 text-[10px] font-bold text-primary-foreground">
+                {activeCount}
+              </span>
+            )}
+          </span>
+          <ChevronDown
+            className={`h-4 w-4 shrink-0 text-muted-foreground transition lg:hidden ${open ? "rotate-180" : ""}`}
+          />
+        </button>
+        <button
+          className="shrink-0 text-xs font-semibold text-primary"
           onClick={() => onChange(EMPTY_FILTERS)}
         >
           Clear all
         </button>
       </div>
+
+      <div className={open ? "block" : "hidden lg:block"}>
+
 
       <section className="border-t border-border py-5">
         <p className="eyebrow pb-2">Categories</p>
@@ -119,6 +142,7 @@ export function FilterSidebar({
           />
         ))}
       </section>
+      </div>
     </aside>
   );
 }

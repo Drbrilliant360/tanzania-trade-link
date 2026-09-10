@@ -19,7 +19,7 @@ export function AIAssistant() {
     return (
       <button
         onClick={() => setOpen(true)}
-        className="fixed bottom-6 right-6 z-50 flex h-14 w-14 items-center justify-center rounded-full bg-primary text-primary-foreground shadow-lg transition hover:brightness-110"
+        className="fixed bottom-4 right-4 z-50 flex h-12 w-12 items-center justify-center rounded-full bg-primary text-primary-foreground shadow-lg transition hover:brightness-110 sm:bottom-6 sm:right-6 sm:h-14 sm:w-14"
         aria-label="Open JengaHub assistant"
       >
         <Sparkles className="h-6 w-6" />
@@ -28,7 +28,7 @@ export function AIAssistant() {
   }
 
   return (
-    <div className="fixed bottom-6 right-6 z-50 flex h-[26rem] w-[21rem] flex-col overflow-hidden rounded-xl border border-border bg-surface shadow-2xl">
+    <div className="fixed inset-x-3 bottom-3 z-50 flex h-[70vh] max-h-[28rem] flex-col overflow-hidden rounded-xl border border-border bg-surface shadow-2xl sm:inset-x-auto sm:bottom-6 sm:right-6 sm:h-[26rem] sm:w-[21rem]">
       <div className="flex items-center gap-2 border-b border-border px-4 py-3">
         <span className="flex h-8 w-8 items-center justify-center rounded-full bg-accent text-accent-foreground">
           <Bot className="h-4 w-4" />
