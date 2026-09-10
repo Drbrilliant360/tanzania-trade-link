@@ -1,11 +1,13 @@
 export const CATEGORIES = [
   { slug: "cement", name: "Cement" },
   { slug: "steel", name: "Steel" },
+  { slug: "concrete-blocks", name: "Concrete Blocks" },
+  { slug: "aggregates", name: "Aggregates" },
+  { slug: "roofing", name: "Roofing" },
   { slug: "tools", name: "Tools" },
   { slug: "paint", name: "Paint" },
   { slug: "electrical", name: "Electrical" },
   { slug: "plumbing", name: "Plumbing" },
-  { slug: "roofing", name: "Roofing" },
   { slug: "tiles", name: "Tiles" },
   { slug: "timber", name: "Timber" },
 ] as const;
