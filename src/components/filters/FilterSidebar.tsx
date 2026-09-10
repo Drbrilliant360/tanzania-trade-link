@@ -142,6 +142,7 @@ export function FilterSidebar({
           />
         ))}
       </section>
+      </div>
     </aside>
   );
 }
