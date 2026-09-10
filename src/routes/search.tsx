@@ -57,11 +57,11 @@ function SearchResultsPage() {
           <span className="text-foreground">Search results</span>
         </nav>
 
-        <div className="mt-8 grid gap-10 lg:grid-cols-[16rem_1fr]">
+        <div className="mt-6 grid gap-6 lg:mt-8 lg:grid-cols-[16rem_1fr] lg:gap-10">
           <FilterSidebar filters={filters} onChange={setFilters} />
 
-          <div>
-            <h1 className="text-3xl">Results for “{q || "all materials"}”</h1>
+          <div className="min-w-0">
+            <h1 className="text-2xl sm:text-3xl">Results for “{q || "all materials"}”</h1>
             <p className="mt-2 text-sm text-muted-foreground">
               Found {results.length} items from verified suppliers
             </p>
