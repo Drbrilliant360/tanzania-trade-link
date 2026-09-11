@@ -24,7 +24,7 @@ export const Route = createFileRoute("/dashboard/")({
 });
 
 function SellerDashboardPage() {
-  const max = Math.max(...SALES_TREND.map((d) => d.value));
+  const max = Math.max(...SALES_TREND.map((d) => d.value ?? 0), 1);
 
   return (
     <DashboardLayout
@@ -53,7 +53,7 @@ function SellerDashboardPage() {
             <div key={d.day} className="flex flex-1 flex-col items-center gap-2">
               <div
                 className="w-full rounded-t-md bg-primary/80"
-                style={{ height: `${(d.value / max) * 100}%` }}
+                style={{ height: `${((d.value ?? 0) / max) * 100}%` }}
               />
               <span className="text-xs text-muted-foreground">{d.day}</span>
             </div>
