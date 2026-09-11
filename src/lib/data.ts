@@ -1092,6 +1092,93 @@ export const SALES_TREND = [
   { day: "Fri", value: 1.9 },
   { day: "Sat", value: 2.5 },
   { day: "Sun", value: 1.8 },
+  {
+    id: "mbeya-cement-distributors",
+    name: "Mbeya Cement Distributors",
+    tagline: "Authorised cement dealer — Southern Highlands",
+    location: "Mbeya, Tanzania",
+    rating: 4.6,
+    reviews: 74,
+    verified: true,
+    about:
+      "Authorised distributor of Mbeya, Twiga and Dangote cement serving the Southern Highlands. Bulk and bagged supply with same-region delivery to Mbeya, Songwe, Iringa and Njombe.",
+    stats: [
+      { label: "Years exp.", value: "14" },
+      { label: "Employees", value: "45" },
+      { label: "Projects", value: "310" },
+      { label: "Awards", value: "3" },
+    ],
+    phone: "+255 25 250 3321",
+    email: "sales@mbeyacement.co.tz",
+    website: "www.mbeyacementdistributors.co.tz",
+    address: "Uyole Industrial Road, Mbeya",
+    licenses: [
+      { name: "TBS Certification", status: "Active" },
+      { name: "Authorised Dealer Licence", status: "Verified" },
+    ],
+    activity: [
+      { name: "Mbeya Referral Hospital wing", date: "July 2026", status: "Ongoing" },
+      { name: "Songwe housing scheme supply", date: "March 2026", status: "Completed" },
+    ],
+  },
+  {
+    id: "ujenzi-block",
+    name: "Ujenzi Block Co.",
+    tagline: "Solid & hollow concrete block manufacturer",
+    location: "Kigamboni, Dar es Salaam, Tanzania",
+    rating: 4.5,
+    reviews: 62,
+    verified: true,
+    about:
+      "Machine-pressed solid and hollow concrete blocks cast daily at our Kigamboni yard. Standard 150mm and 200mm sizes plus custom moulds for large residential estates.",
+    stats: [
+      { label: "Years exp.", value: "11" },
+      { label: "Employees", value: "60" },
+      { label: "Projects", value: "180" },
+      { label: "Awards", value: "2" },
+    ],
+    phone: "+255 22 265 7712",
+    email: "orders@ujenziblock.co.tz",
+    website: "www.ujenziblock.co.tz",
+    address: "Mji Mwema Road, Kigamboni, Dar es Salaam",
+    licenses: [
+      { name: "TBS Certification", status: "Active" },
+      { name: "CRB Registration", status: "Verified" },
+    ],
+    activity: [
+      { name: "Kigamboni estate block supply", date: "August 2026", status: "Ongoing" },
+      { name: "Mbagala school walls", date: "January 2026", status: "Completed" },
+    ],
+  },
+  {
+    id: "coastal-mabati",
+    name: "Coastal Mabati Ltd",
+    tagline: "Corrugated iron sheet roll-former",
+    location: "Tanga, Tanzania",
+    rating: 4.7,
+    reviews: 91,
+    verified: true,
+    about:
+      "Roll-formers of corrugated and box-profile iron sheets (mabati) in galvanised and colour-coated finishes. Custom lengths cut to order with ridge caps and fixings supplied.",
+    stats: [
+      { label: "Years exp.", value: "16" },
+      { label: "Employees", value: "80" },
+      { label: "Projects", value: "260" },
+      { label: "Awards", value: "5" },
+    ],
+    phone: "+255 27 264 4180",
+    email: "info@coastalmabati.co.tz",
+    website: "www.coastalmabati.co.tz",
+    address: "Bombo Road Industrial Estate, Tanga",
+    licenses: [
+      { name: "TBS Certification", status: "Active" },
+      { name: "Manufacturer Licence", status: "Verified" },
+    ],
+    activity: [
+      { name: "Tanga market roof re-sheeting", date: "July 2026", status: "Ongoing" },
+      { name: "Pangani resort roofing", date: "February 2026", status: "Completed" },
+    ],
+  },
 ];
 
 export const VERIFICATION_QUEUE = [
