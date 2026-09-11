@@ -90,7 +90,7 @@ export function FilterSidebar({
 
       <section className="border-t border-border py-5">
         <p className="eyebrow pb-2">Categories</p>
-        {CATEGORIES.slice(0, 7).map((c) => (
+        {CATEGORIES.map((c) => (
           <Check
             key={c.slug}
             label={c.name}

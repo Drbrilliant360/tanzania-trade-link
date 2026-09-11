@@ -10,7 +10,9 @@ import {
   PaintBucket,
   Plug,
   Droplets,
-  Home as HomeIcon,
+  Blocks,
+  Mountain,
+  Layers,
   Grid2x2,
   TreePine,
   Wrench,
@@ -43,7 +45,19 @@ export const Route = createFileRoute("/")({
   component: HomePage,
 });
 
-const CATEGORY_ICONS = [Building2, Wrench, Hammer, PaintBucket, Plug, Droplets, HomeIcon, Grid2x2, TreePine];
+const CATEGORY_ICONS = [
+  Building2,
+  Wrench,
+  Blocks,
+  Mountain,
+  Layers,
+  Hammer,
+  PaintBucket,
+  Plug,
+  Droplets,
+  Grid2x2,
+  TreePine,
+];
 
 function HomePage() {
   const [material, setMaterial] = useState("");
