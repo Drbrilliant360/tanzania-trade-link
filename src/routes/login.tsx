@@ -2,6 +2,8 @@ import { createFileRoute, Link, useNavigate } from "@tanstack/react-router";
 import { useState } from "react";
 import { toast } from "sonner";
 import { AuthLayout } from "@/layouts/AuthLayout";
+import { ActionButton } from "@/components/common/ActionButton";
+import { wait } from "@/hooks/useTaskRunner";
 import { useAuth } from "@/context/AuthContext";
 
 export const Route = createFileRoute("/login")({
@@ -69,9 +71,14 @@ function LoginPage() {
             className="mt-1 h-10 w-full rounded-md border border-border bg-surface px-3 text-sm"
           />
         </label>
-        <button className="h-11 w-full rounded-md bg-primary text-sm font-semibold text-primary-foreground transition hover:brightness-110">
+        {error && (
+          <p role="alert" className="rounded-md bg-destructive/10 p-3 text-sm text-destructive">
+            {error}
+          </p>
+        )}
+        <ActionButton type="submit" loading={busy} loadingText="Signing you in…" className="w-full">
           Sign in
-        </button>
+        </ActionButton>
       </form>
 
       <p className="mt-5 text-sm text-muted-foreground">
