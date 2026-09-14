@@ -120,20 +120,32 @@ function SellerAddProductPage() {
           />
         </label>
 
-        <div className="flex gap-3">
-          <button
-            type="submit"
-            className="h-11 rounded-md bg-primary px-6 text-sm font-semibold text-primary-foreground transition hover:brightness-110"
-          >
-            Publish product
-          </button>
-          <button
+        {(task.running || task.status === "error") && (
+          <div>
+            <ProgressSteps steps={task.stepStates} percent={task.percent} />
+            {task.error && (
+              <p
+                role="alert"
+                className="mt-3 rounded-md bg-destructive/10 p-3 text-sm text-destructive"
+              >
+                {task.error} Your details are still here — press Publish product to try again.
+              </p>
+            )}
+          </div>
+        )}
+
+        <div className="flex flex-wrap gap-3">
+          <ActionButton type="submit" loading={task.running} loadingText="Publishing…">
+            {task.status === "error" ? "Try publishing again" : "Publish product"}
+          </ActionButton>
+          <ActionButton
             type="button"
-            onClick={() => navigate({ to: "/dashboard/products" })}
-            className="h-11 rounded-md border border-border px-6 text-sm font-semibold"
+            variant="outline"
+            disabled={task.running}
+            onClick={() => void navigate({ to: "/dashboard/products" })}
           >
             Cancel
-          </button>
+          </ActionButton>
         </div>
       </form>
     </DashboardLayout>
