@@ -1,7 +1,10 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { Mail, MapPin, Phone } from "lucide-react";
 import { toast } from "sonner";
+import { useState } from "react";
 import { MainLayout, Container } from "@/layouts/MainLayout";
+import { ActionButton } from "@/components/common/ActionButton";
+import { wait } from "@/hooks/useTaskRunner";
 
 export const Route = createFileRoute("/contact")({
   head: () => ({
@@ -22,6 +25,10 @@ export const Route = createFileRoute("/contact")({
 });
 
 function ContactPage() {
+  const [busy, setBusy] = useState(false);
+  const [sent, setSent] = useState(false);
+  const [error, setError] = useState<string | null>(null);
+
   return (
     <MainLayout>
       <Container className="py-10">
@@ -33,10 +40,24 @@ function ContactPage() {
         <div className="mt-8 grid gap-8 lg:grid-cols-[2fr_1fr]">
           <form
             className="panel space-y-4 p-6"
-            onSubmit={(e) => {
+            onSubmit={async (e) => {
               e.preventDefault();
-              toast.success("Message sent. Our team will reply by email.");
-              (e.target as HTMLFormElement).reset();
+              const form = e.target as HTMLFormElement;
+              setBusy(true);
+              setError(null);
+              try {
+                await wait(900);
+                toast.success("Message sent. Our team will reply by email within one business day.");
+                setSent(true);
+                form.reset();
+              } catch {
+                setError(
+                  "Your message didn't send. Nothing was lost — press Send message again, or email support@jengahub.co.tz.",
+                );
+                toast.error("Message not sent");
+              } finally {
+                setBusy(false);
+              }
             }}
           >
             <div className="grid gap-4 sm:grid-cols-2">
@@ -64,9 +85,19 @@ function ContactPage() {
                 className="mt-1 w-full rounded-md border border-border bg-surface p-3 text-sm"
               />
             </label>
-            <button className="rounded-md bg-primary px-5 py-2.5 text-sm font-semibold text-primary-foreground">
+            {error && (
+              <p role="alert" className="rounded-md bg-destructive/10 p-3 text-sm text-destructive">
+                {error}
+              </p>
+            )}
+            {sent && !error && (
+              <p className="rounded-md bg-accent p-3 text-sm">
+                Thanks — your message is with our Dar es Salaam team.
+              </p>
+            )}
+            <ActionButton type="submit" loading={busy} loadingText="Sending your message…">
               Send message
-            </button>
+            </ActionButton>
           </form>
 
           <aside className="panel space-y-4 p-6 text-sm">

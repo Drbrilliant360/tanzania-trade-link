@@ -1,7 +1,9 @@
 import { createFileRoute, useNavigate } from "@tanstack/react-router";
-import { toast } from "sonner";
 import { DashboardLayout } from "@/layouts/DashboardLayout";
 import { CATEGORIES, REGIONS } from "@/lib/constants";
+import { ActionButton } from "@/components/common/ActionButton";
+import { ProgressSteps } from "@/components/common/ProgressSteps";
+import { useTaskRunner, wait } from "@/hooks/useTaskRunner";
 
 export const Route = createFileRoute("/dashboard/products/new")({
   head: () => ({
@@ -22,6 +24,7 @@ export const Route = createFileRoute("/dashboard/products/new")({
 
 function SellerAddProductPage() {
   const navigate = useNavigate();
+  const task = useTaskRunner();
 
   return (
     <DashboardLayout title="Add new product" subtitle="Publish a listing to the marketplace">
@@ -29,8 +32,19 @@ function SellerAddProductPage() {
         className="panel max-w-3xl space-y-5 p-6"
         onSubmit={(e) => {
           e.preventDefault();
-          toast.success("Product published");
-          navigate({ to: "/dashboard/products" });
+          void task.run(
+            [
+              { label: "Saving product details", run: () => wait(600) },
+              { label: "Uploading photos", run: () => wait(1400) },
+              { label: "Running listing checks", run: () => wait(700) },
+              { label: "Publishing to the marketplace", run: () => wait(600) },
+            ],
+            {
+              successMessage: "Product published and live on the marketplace.",
+              failureHint: "Your draft details were kept — try publishing again.",
+              onSuccess: () => void navigate({ to: "/dashboard/products" }),
+            },
+          );
         }}
       >
         <label className="block text-sm">
@@ -105,20 +119,32 @@ function SellerAddProductPage() {
           />
         </label>
 
-        <div className="flex gap-3">
-          <button
-            type="submit"
-            className="h-11 rounded-md bg-primary px-6 text-sm font-semibold text-primary-foreground transition hover:brightness-110"
-          >
-            Publish product
-          </button>
-          <button
+        {(task.running || task.status === "error") && (
+          <div>
+            <ProgressSteps steps={task.stepStates} percent={task.percent} />
+            {task.error && (
+              <p
+                role="alert"
+                className="mt-3 rounded-md bg-destructive/10 p-3 text-sm text-destructive"
+              >
+                {task.error} Your details are still here — press Publish product to try again.
+              </p>
+            )}
+          </div>
+        )}
+
+        <div className="flex flex-wrap gap-3">
+          <ActionButton type="submit" loading={task.running} loadingText="Publishing…">
+            {task.status === "error" ? "Try publishing again" : "Publish product"}
+          </ActionButton>
+          <ActionButton
             type="button"
-            onClick={() => navigate({ to: "/dashboard/products" })}
-            className="h-11 rounded-md border border-border px-6 text-sm font-semibold"
+            variant="outline"
+            disabled={task.running}
+            onClick={() => void navigate({ to: "/dashboard/products" })}
           >
             Cancel
-          </button>
+          </ActionButton>
         </div>
       </form>
     </DashboardLayout>
