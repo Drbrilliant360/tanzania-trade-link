@@ -25,16 +25,30 @@ function LoginPage() {
   const { login } = useAuth();
   const navigate = useNavigate();
   const [email, setEmail] = useState("");
+  const [busy, setBusy] = useState(false);
+  const [error, setError] = useState<string | null>(null);
 
   return (
     <AuthLayout title="Welcome back" subtitle="Sign in to your JengaHub account">
       <form
         className="space-y-4"
-        onSubmit={(e) => {
+        onSubmit={async (e) => {
           e.preventDefault();
-          login(email);
-          toast.success("Signed in");
-          navigate({ to: "/dashboard" });
+          setBusy(true);
+          setError(null);
+          try {
+            await wait(700);
+            login(email);
+            toast.success("Signed in. Taking you to your dashboard.");
+            await navigate({ to: "/dashboard" });
+          } catch {
+            setError("We couldn't sign you in. Check your details and try again.");
+            toast.error("Sign in failed", {
+              description: "Your details were not changed. Please try again.",
+            });
+          } finally {
+            setBusy(false);
+          }
         }}
       >
         <label className="block text-sm">
