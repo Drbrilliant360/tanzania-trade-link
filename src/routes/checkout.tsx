@@ -6,6 +6,9 @@ import { MainLayout, Container } from "@/layouts/MainLayout";
 import { useCart } from "@/context/CartContext";
 import { formatTZS } from "@/lib/format";
 import { DELIVERY_TYPES, PAYMENT_METHODS, REGIONS } from "@/lib/constants";
+import { ActionButton } from "@/components/common/ActionButton";
+import { ProgressSteps } from "@/components/common/ProgressSteps";
+import { useTaskRunner, wait } from "@/hooks/useTaskRunner";
 
 export const Route = createFileRoute("/checkout")({
   head: () => ({
@@ -33,6 +36,26 @@ function CheckoutPage() {
   const navigate = useNavigate();
   const [method, setMethod] = useState(PAYMENT_METHODS[0]?.id ?? "mpesa");
   const delivery = items.length ? 120000 : 0;
+  const task = useTaskRunner();
+
+  const placeOrder = () =>
+    task.run(
+      [
+        { label: "Checking stock with the supplier", run: () => wait(700) },
+        { label: "Requesting payment approval on your phone", run: () => wait(1200) },
+        { label: "Holding payment in escrow", run: () => wait(800) },
+        { label: "Confirming your delivery slot", run: () => wait(700) },
+      ],
+      {
+        successMessage: "Order placed. Payment is held in escrow until you confirm delivery.",
+        failureHint:
+          "No money left your account. Check your phone for the payment prompt and try again.",
+        onSuccess: () => {
+          clear();
+          void navigate({ to: "/orders" });
+        },
+      },
+    );
 
   return (
     <MainLayout>
@@ -43,9 +66,7 @@ function CheckoutPage() {
           className="mt-8 grid gap-8 lg:grid-cols-[2fr_1fr]"
           onSubmit={(e) => {
             e.preventDefault();
-            clear();
-            toast.success("Order placed. Payment held in escrow until delivery.");
-            navigate({ to: "/" });
+            void placeOrder();
           }}
         >
           <div className="space-y-8">
