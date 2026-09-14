@@ -85,9 +85,19 @@ function ContactPage() {
                 className="mt-1 w-full rounded-md border border-border bg-surface p-3 text-sm"
               />
             </label>
-            <button className="rounded-md bg-primary px-5 py-2.5 text-sm font-semibold text-primary-foreground">
+            {error && (
+              <p role="alert" className="rounded-md bg-destructive/10 p-3 text-sm text-destructive">
+                {error}
+              </p>
+            )}
+            {sent && !error && (
+              <p className="rounded-md bg-accent p-3 text-sm">
+                Thanks — your message is with our Dar es Salaam team.
+              </p>
+            )}
+            <ActionButton type="submit" loading={busy} loadingText="Sending your message…">
               Send message
-            </button>
+            </ActionButton>
           </form>
 
           <aside className="panel space-y-4 p-6 text-sm">
