@@ -40,10 +40,24 @@ function ContactPage() {
         <div className="mt-8 grid gap-8 lg:grid-cols-[2fr_1fr]">
           <form
             className="panel space-y-4 p-6"
-            onSubmit={(e) => {
+            onSubmit={async (e) => {
               e.preventDefault();
-              toast.success("Message sent. Our team will reply by email.");
-              (e.target as HTMLFormElement).reset();
+              const form = e.target as HTMLFormElement;
+              setBusy(true);
+              setError(null);
+              try {
+                await wait(900);
+                toast.success("Message sent. Our team will reply by email within one business day.");
+                setSent(true);
+                form.reset();
+              } catch {
+                setError(
+                  "Your message didn't send. Nothing was lost — press Send message again, or email support@jengahub.co.tz.",
+                );
+                toast.error("Message not sent");
+              } finally {
+                setBusy(false);
+              }
             }}
           >
             <div className="grid gap-4 sm:grid-cols-2">
