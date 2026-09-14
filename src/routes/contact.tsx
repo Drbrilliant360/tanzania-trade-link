@@ -1,7 +1,10 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { Mail, MapPin, Phone } from "lucide-react";
 import { toast } from "sonner";
+import { useState } from "react";
 import { MainLayout, Container } from "@/layouts/MainLayout";
+import { ActionButton } from "@/components/common/ActionButton";
+import { wait } from "@/hooks/useTaskRunner";
 
 export const Route = createFileRoute("/contact")({
   head: () => ({
@@ -22,6 +25,10 @@ export const Route = createFileRoute("/contact")({
 });
 
 function ContactPage() {
+  const [busy, setBusy] = useState(false);
+  const [sent, setSent] = useState(false);
+  const [error, setError] = useState<string | null>(null);
+
   return (
     <MainLayout>
       <Container className="py-10">

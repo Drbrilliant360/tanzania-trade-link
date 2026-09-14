@@ -2,6 +2,8 @@ import { createFileRoute, Link, useNavigate } from "@tanstack/react-router";
 import { useState } from "react";
 import { toast } from "sonner";
 import { AuthLayout } from "@/layouts/AuthLayout";
+import { ActionButton } from "@/components/common/ActionButton";
+import { wait } from "@/hooks/useTaskRunner";
 import { useAuth } from "@/context/AuthContext";
 import type { Role } from "@/context/AuthContext";
 
@@ -31,16 +33,28 @@ function SignupPage() {
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [role, setRole] = useState<Role>("buyer");
+  const [busy, setBusy] = useState(false);
+  const [error, setError] = useState<string | null>(null);
 
   return (
     <AuthLayout title="Create your account" subtitle="Buy, sell or offer services on JengaHub">
       <form
         className="space-y-4"
-        onSubmit={(e) => {
+        onSubmit={async (e) => {
           e.preventDefault();
-          register(name, email, role);
-          toast.success("Account created");
-          navigate({ to: "/" });
+          setBusy(true);
+          setError(null);
+          try {
+            await wait(800);
+            register(name, email, role);
+            toast.success("Account created. Welcome to JengaHub!");
+            await navigate({ to: "/" });
+          } catch {
+            setError("We couldn't create your account. Please try again.");
+            toast.error("Sign up failed", { description: "No account was created." });
+          } finally {
+            setBusy(false);
+          }
         }}
       >
         <label className="block text-sm">
@@ -84,9 +98,19 @@ function SignupPage() {
             className="mt-1 h-10 w-full rounded-md border border-border bg-surface px-3 text-sm"
           />
         </label>
-        <button className="h-11 w-full rounded-md bg-primary text-sm font-semibold text-primary-foreground transition hover:brightness-110">
+        {error && (
+          <p role="alert" className="rounded-md bg-destructive/10 p-3 text-sm text-destructive">
+            {error}
+          </p>
+        )}
+        <ActionButton
+          type="submit"
+          loading={busy}
+          loadingText="Creating your account…"
+          className="w-full"
+        >
           Create account
-        </button>
+        </ActionButton>
       </form>
 
       <p className="mt-5 text-sm text-muted-foreground">
