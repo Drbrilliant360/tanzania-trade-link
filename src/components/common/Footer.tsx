@@ -42,6 +42,21 @@ export function Footer() {
         <div>
           <h4 className="text-base">Contact Support</h4>
           <ul className="mt-3 space-y-3 text-sm text-muted-foreground">
+            <li>
+              <Link to="/help" className="hover:text-primary">
+                Help centre
+              </Link>
+            </li>
+            <li>
+              <Link to="/contact" className="hover:text-primary">
+                Contact us
+              </Link>
+            </li>
+            <li>
+              <Link to="/about" className="hover:text-primary">
+                About JengaHub
+              </Link>
+            </li>
             <li className="flex items-center gap-2">
               <Mail className="h-4 w-4 text-primary" /> support@jengahub.co.tz
             </li>
@@ -73,9 +88,19 @@ export function Footer() {
         <div className="mx-auto flex max-w-[1400px] flex-wrap items-center justify-between gap-3 px-4 py-6 text-xs text-muted-foreground lg:px-8">
           <p>© 2026 JengaHub Marketplace. All rights reserved.</p>
           <div className="flex gap-6">
-            <span>Privacy Policy</span>
-            <span>Terms of Service</span>
-            <span>Vendor Agreement</span>
+            <Link to="/legal/$doc" params={{ doc: "privacy" }} className="hover:text-primary">
+              Privacy Policy
+            </Link>
+            <Link to="/legal/$doc" params={{ doc: "terms" }} className="hover:text-primary">
+              Terms of Service
+            </Link>
+            <Link
+              to="/legal/$doc"
+              params={{ doc: "vendor-agreement" }}
+              className="hover:text-primary"
+            >
+              Vendor Agreement
+            </Link>
           </div>
         </div>
       </div>
