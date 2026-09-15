@@ -48,13 +48,16 @@ function SellerDashboardPage() {
 
       <section className="mt-8 panel p-6">
         <h2 className="text-lg">Sales trend (TZS millions)</h2>
-        <div className="mt-6 flex h-48 items-end gap-4">
+        <div className="mt-6 flex h-48 items-stretch gap-3 sm:gap-4">
           {SALES_TREND.map((d) => (
-            <div key={d.day} className="flex flex-1 flex-col items-center gap-2">
-              <div
-                className="w-full rounded-t-md bg-primary/80"
-                style={{ height: `${((d.value ?? 0) / max) * 100}%` }}
-              />
+            <div key={d.day} className="flex h-full flex-1 flex-col items-center gap-2">
+              <div className="flex w-full flex-1 items-end">
+                <div
+                  className="w-full rounded-t-md bg-primary/80"
+                  style={{ height: `${Math.max((d.value / max) * 100, 4)}%` }}
+                  title={`${d.day}: TZS ${d.value}M`}
+                />
+              </div>
               <span className="text-xs text-muted-foreground">{d.day}</span>
             </div>
           ))}
