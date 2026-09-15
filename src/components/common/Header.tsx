@@ -2,9 +2,11 @@ import { Link, useNavigate } from "@tanstack/react-router";
 import { HardHat, Search, ShoppingCart, Bell, MessageSquare, User, Menu, X } from "lucide-react";
 import { useState } from "react";
 import { useCart } from "@/context/CartContext";
+import { useAuth } from "@/context/AuthContext";
 
 export function Header() {
   const { count } = useCart();
+  const { user } = useAuth();
   const navigate = useNavigate();
   const [q, setQ] = useState("");
   const [menuOpen, setMenuOpen] = useState(false);
@@ -80,11 +82,11 @@ export function Header() {
             )}
           </Link>
           <Link
-            to="/login"
+            to={user ? "/account" : "/login"}
             className="flex h-9 items-center gap-2 rounded-md px-2 text-sm font-medium hover:text-primary sm:ml-2 sm:border-l sm:border-border sm:pl-3"
           >
             <User className="h-4 w-4" />
-            <span className="hidden sm:inline">Account</span>
+            <span className="hidden sm:inline">{user ? user.name : "Account"}</span>
           </Link>
         </div>
       </div>
@@ -128,6 +130,12 @@ export function Header() {
             </Link>
             <Link to="/dashboard" onClick={() => setMenuOpen(false)} className="rounded-md px-2 py-3 hover:bg-muted">
               Seller dashboard
+            </Link>
+            <Link to="/orders" onClick={() => setMenuOpen(false)} className="rounded-md px-2 py-3 hover:bg-muted">
+              My orders
+            </Link>
+            <Link to="/help" onClick={() => setMenuOpen(false)} className="rounded-md px-2 py-3 hover:bg-muted">
+              Help centre
             </Link>
           </nav>
         </div>
