@@ -38,6 +38,7 @@ import { Route as ProfessionalsIndexRouteImport } from './routes/professionals.i
 import { Route as ProfessionalsIdRouteImport } from './routes/professionals.$id'
 import { Route as SellOnboardingRouteImport } from './routes/sell.onboarding'
 import { Route as SupplierIdRouteImport } from './routes/supplier.$id'
+import { Route as ApiPublicAssistantRouteImport } from './routes/api/public/assistant'
 import { Route as DashboardProductsIndexRouteImport } from './routes/dashboard.products.index'
 import { Route as DashboardProductsNewRouteImport } from './routes/dashboard.products.new'
 
@@ -186,6 +187,11 @@ const SupplierIdRoute = SupplierIdRouteImport.update({
   path: '/supplier/$id',
   getParentRoute: () => rootRouteImport,
 } as any)
+const ApiPublicAssistantRoute = ApiPublicAssistantRouteImport.update({
+  id: '/api/public/assistant',
+  path: '/api/public/assistant',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const DashboardProductsIndexRoute = DashboardProductsIndexRouteImport.update({
   id: '/dashboard/products/',
   path: '/dashboard/products/',
@@ -227,6 +233,7 @@ export interface FileRoutesByFullPath {
   '/equipment/': typeof EquipmentIndexRoute
   '/orders/': typeof OrdersIndexRoute
   '/professionals/': typeof ProfessionalsIndexRoute
+  '/api/public/assistant': typeof ApiPublicAssistantRoute
   '/dashboard/products/new': typeof DashboardProductsNewRoute
   '/dashboard/products/': typeof DashboardProductsIndexRoute
 }
@@ -260,6 +267,7 @@ export interface FileRoutesByTo {
   '/equipment': typeof EquipmentIndexRoute
   '/orders': typeof OrdersIndexRoute
   '/professionals': typeof ProfessionalsIndexRoute
+  '/api/public/assistant': typeof ApiPublicAssistantRoute
   '/dashboard/products/new': typeof DashboardProductsNewRoute
   '/dashboard/products': typeof DashboardProductsIndexRoute
 }
@@ -294,6 +302,7 @@ export interface FileRoutesById {
   '/equipment/': typeof EquipmentIndexRoute
   '/orders/': typeof OrdersIndexRoute
   '/professionals/': typeof ProfessionalsIndexRoute
+  '/api/public/assistant': typeof ApiPublicAssistantRoute
   '/dashboard/products/new': typeof DashboardProductsNewRoute
   '/dashboard/products/': typeof DashboardProductsIndexRoute
 }
@@ -329,6 +338,7 @@ export interface FileRouteTypes {
     | '/equipment/'
     | '/orders/'
     | '/professionals/'
+    | '/api/public/assistant'
     | '/dashboard/products/new'
     | '/dashboard/products/'
   fileRoutesByTo: FileRoutesByTo
@@ -362,6 +372,7 @@ export interface FileRouteTypes {
     | '/equipment'
     | '/orders'
     | '/professionals'
+    | '/api/public/assistant'
     | '/dashboard/products/new'
     | '/dashboard/products'
   id:
@@ -395,6 +406,7 @@ export interface FileRouteTypes {
     | '/equipment/'
     | '/orders/'
     | '/professionals/'
+    | '/api/public/assistant'
     | '/dashboard/products/new'
     | '/dashboard/products/'
   fileRoutesById: FileRoutesById
@@ -429,6 +441,7 @@ export interface RootRouteChildren {
   EquipmentIndexRoute: typeof EquipmentIndexRoute
   OrdersIndexRoute: typeof OrdersIndexRoute
   ProfessionalsIndexRoute: typeof ProfessionalsIndexRoute
+  ApiPublicAssistantRoute: typeof ApiPublicAssistantRoute
   DashboardProductsNewRoute: typeof DashboardProductsNewRoute
   DashboardProductsIndexRoute: typeof DashboardProductsIndexRoute
 }
@@ -638,6 +651,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof SupplierIdRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/api/public/assistant': {
+      id: '/api/public/assistant'
+      path: '/api/public/assistant'
+      fullPath: '/api/public/assistant'
+      preLoaderRoute: typeof ApiPublicAssistantRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/dashboard/products/': {
       id: '/dashboard/products/'
       path: '/dashboard/products'
@@ -685,6 +705,7 @@ const rootRouteChildren: RootRouteChildren = {
   EquipmentIndexRoute: EquipmentIndexRoute,
   OrdersIndexRoute: OrdersIndexRoute,
   ProfessionalsIndexRoute: ProfessionalsIndexRoute,
+  ApiPublicAssistantRoute: ApiPublicAssistantRoute,
   DashboardProductsNewRoute: DashboardProductsNewRoute,
   DashboardProductsIndexRoute: DashboardProductsIndexRoute,
 }
