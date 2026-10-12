@@ -27,6 +27,7 @@ function LoginPage() {
   const { login } = useAuth();
   const navigate = useNavigate();
   const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
   const [busy, setBusy] = useState(false);
   const [error, setError] = useState<string | null>(null);
 
@@ -40,11 +41,11 @@ function LoginPage() {
           setError(null);
           try {
             await wait(700);
-            login(email);
+            await login(email, password);
             toast.success("Signed in. Taking you to your dashboard.");
             await navigate({ to: "/dashboard" });
           } catch {
-            setError("We couldn't sign you in. Check your details and try again.");
+            setError("We couldn't sign you in. Check your email and password, or confirm your email first.");
             toast.error("Sign in failed", {
               description: "Your details were not changed. Please try again.",
             });
@@ -68,6 +69,8 @@ function LoginPage() {
           <input
             required
             type="password"
+            value={password}
+            onChange={(e) => setPassword(e.target.value)}
             className="mt-1 h-10 w-full rounded-md border border-border bg-surface px-3 text-sm"
           />
         </label>
