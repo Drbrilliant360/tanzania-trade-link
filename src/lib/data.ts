@@ -4,6 +4,10 @@ import bricks from "@/assets/bricks.jpg";
 import gravel from "@/assets/gravel.jpg";
 import sand from "@/assets/sand.jpg";
 import excavator from "@/assets/excavator.jpg";
+import eq_cat320d from "@/assets/equipment-cat320d.jpg.asset.json";
+import eq_cat320gc from "@/assets/equipment-cat320gc.jpg.asset.json";
+import eq_jcb from "@/assets/equipment-jcb.jpg.asset.json";
+import eq_mixer from "@/assets/equipment-mixer.jpg.asset.json";
 
 export const IMAGES = { cement, steel, bricks, gravel, sand, excavator };
 
@@ -766,7 +770,7 @@ export const EQUIPMENT: Equipment[] = [
     location: "Kurasini, Dar es Salaam",
     seller: "Mwananchi Construction Ltd",
     sellerId: "mwananchi-construction",
-    image: excavator,
+    image: eq_cat320d.url,
     sku: "CAT-320D-2024-TZ",
     note: "Optimised for fuel efficiency and low operating costs in Tanzanian climates. Heavy-duty undercarriage and high-performance hydraulics as standard.",
     specs: [
@@ -789,7 +793,7 @@ export const EQUIPMENT: Equipment[] = [
     location: "Dar es Salaam",
     seller: "Mwananchi Construction Ltd",
     sellerId: "mwananchi-construction",
-    image: excavator,
+    image: eq_cat320gc.url,
     sku: "CAT-320GC-2025-TZ",
     note: "Next generation control system with lower fuel burn and simplified servicing intervals.",
     specs: [
@@ -812,7 +816,7 @@ export const EQUIPMENT: Equipment[] = [
     location: "Arusha",
     seller: "Kilimanjaro Steel Ltd",
     sellerId: "kilimanjaro-steel",
-    image: excavator,
+    image: eq_jcb.url,
     sku: "JCB-3DX-2021-TZ",
     note: "Well maintained site machine with 3,400 recorded hours and full service history.",
     specs: [
@@ -835,7 +839,7 @@ export const EQUIPMENT: Equipment[] = [
     location: "Mwanza",
     seller: "Lake Sands & Aggregates",
     sellerId: "lake-sands",
-    image: excavator,
+    image: eq_mixer.url,
     sku: "FRI-DB250-2023",
     note: "Self-loading batching mixer for remote sites without a ready-mix plant nearby.",
     specs: [
