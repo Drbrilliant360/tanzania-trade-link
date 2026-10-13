@@ -2,7 +2,7 @@ import { useState } from "react";
 import { Bot, Send, X, Sparkles } from "lucide-react";
 
 const SEED = [
-  { from: "ai", text: "Hello! I am your JengaHub assistant. How can I help you find the right building materials today?" },
+  { from: "ai", text: "Hello! I am Eng.cecilia Ai, your JengaHub assistant. How can I help you find the right building materials today?" },
   { from: "me", text: "I am looking for cement for a residential project in Dar es Salaam." },
   {
     from: "ai",
@@ -20,7 +20,7 @@ export function AIAssistant() {
       <button
         onClick={() => setOpen(true)}
         className="fixed bottom-4 right-4 z-50 flex h-12 w-12 items-center justify-center rounded-full bg-primary text-primary-foreground shadow-lg transition hover:brightness-110 sm:bottom-6 sm:right-6 sm:h-14 sm:w-14"
-        aria-label="Open JengaHub assistant"
+        aria-label="Open Eng.cecilia Ai"
       >
         <Sparkles className="h-6 w-6" />
       </button>
@@ -34,7 +34,7 @@ export function AIAssistant() {
           <Bot className="h-4 w-4" />
         </span>
         <div className="flex-1">
-          <p className="text-sm font-semibold">JengaHub AI Assistant</p>
+          <p className="text-sm font-semibold">Eng.cecilia Ai</p>
           <p className="text-[11px] text-muted-foreground">Always here to help</p>
         </div>
         <button onClick={() => setOpen(false)} aria-label="Close assistant">
